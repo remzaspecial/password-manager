@@ -1,8 +1,8 @@
 import Password, { IPassword } from '../../models/password';
 
 export class PasswordService {
-  public async getPasswords(): Promise<IPassword[]> {
-    return Password.find().populate('userId');
+  public async getPasswords(userId: string): Promise<IPassword[]> {
+    return Password.find({ userId }).populate('userId');
   }
 
   public async createPassword(password: IPassword): Promise<IPassword> {

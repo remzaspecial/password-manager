@@ -11,7 +11,8 @@ export class PasswordController {
 
   public async getPasswords(req: Request, res: Response, next: NextFunction) {
     try {
-      const passwords = await this.passwordService.getPasswords();
+      const userId = req.query.userId as string;
+      const passwords = await this.passwordService.getPasswords(userId);
       res.status(200).json(passwords);
     } catch (error) {
       next(error);
