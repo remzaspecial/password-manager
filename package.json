@@ -11,8 +11,8 @@
     "url": "git+https://github.com/remzaspecial/password-manager.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Rustam Ramazanov",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/remzaspecial/password-manager/issues"
   },
