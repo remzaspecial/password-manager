@@ -1,0 +1,24 @@
+import Password, { IPassword } from '../../models/password';
+
+export class PasswordService {
+  public async getPasswords(): Promise<IPassword[]> {
+    return Password.find().populate('userId');
+  }
+
+  public async createPassword(password: IPassword): Promise<IPassword> {
+    const createdPassword = new Password(password);
+    return createdPassword.save();
+  }
+
+  public async getPasswordById(id: string): Promise<IPassword | null> {
+    return Password.findById(id).populate('userId');
+  }
+
+  public async updatePassword(id: string, updatedPassword: IPassword): Promise<IPassword | null> {
+    return Password.findByIdAndUpdate(id, updatedPassword, { new: true });
+  }
+
+  public async deletePassword(id: string): Promise<IPassword | null> {
+    return Password.findByIdAndDelete(id);
+  }
+}
