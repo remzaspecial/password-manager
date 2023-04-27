@@ -1,4 +1,4 @@
-import express, { Application, Response } from 'express';
+import express, { Application, Request, Response, NextFunction } from 'express';
 import mongoose, { ConnectOptions } from 'mongoose';
 import cors from 'cors';
 import config from './config/config';
@@ -27,7 +27,7 @@ class App {
     this.app.use('/api/auth', authRouter);
     this.app.use('/api/passwords', passwordRouter);
     this.app.use('/api/users', userRouter);
-    this.app.use((res: Response) => {
+    this.app.use((req: Request, res: Response, next: NextFunction) => {
       const error = new Error('Not found');
       res.status(404).json({ message: error.message });
     });
