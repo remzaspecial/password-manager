@@ -1,8 +1,8 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document } from "mongoose";
 
-export interface ICreateUser{
-    username: string,
-    password: string
+export interface ICreateUser {
+  username: string;
+  password: string;
 }
 
 export interface IUser extends Document {
@@ -20,4 +20,4 @@ const UserSchema: Schema = new Schema(
   { timestamps: true }
 );
 
-export default mongoose.model<IUser>('User', UserSchema);
+export default mongoose.model<IUser>("User", UserSchema);

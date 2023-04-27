@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
-import Password from '../../models/password';
-import { PasswordService } from './password.service';
+import { Request, Response, NextFunction } from "express";
+import Password from "../../models/password";
+import { PasswordService } from "./password.service";
 
 export class PasswordController {
   private passwordService: PasswordService;
@@ -22,17 +22,23 @@ export class PasswordController {
   public async createPassword(req: Request, res: Response, next: NextFunction) {
     try {
       const password = req.body;
-      const createdPassword = await this.passwordService.createPassword(password);
+      const createdPassword = await this.passwordService.createPassword(
+        password
+      );
       res.status(201).json(createdPassword);
     } catch (error) {
       next(error);
     }
   }
 
-  public async getPasswordById(req: Request, res: Response, next: NextFunction) {
+  public async getPasswordById(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
     try {
       const { id } = req.params;
-      console.log({id})
+      console.log({ id });
       const password = await this.passwordService.getPasswordById(id);
       res.status(200).json(password);
     } catch (error) {
@@ -44,7 +50,10 @@ export class PasswordController {
     try {
       const { id } = req.params;
       const password = new Password(req.body);
-      const updatedPassword = await this.passwordService.updatePassword(id, password);
+      const updatedPassword = await this.passwordService.updatePassword(
+        id,
+        password
+      );
       res.status(200).json(updatedPassword);
     } catch (error) {
       next(error);
