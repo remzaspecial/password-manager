@@ -10,7 +10,6 @@ export interface IPassword extends Document {
   category?: string;
   tags?: string[];
   comment?: string;
-  passwordHash: string;
 }
 
 const PasswordSchema: Schema = new Schema(
@@ -19,7 +18,6 @@ const PasswordSchema: Schema = new Schema(
     name: { type: String, required: true },
     username: { type: String, required: true },
     password: { type: String, required: true },
-    passwordHash: { type: String, required: true },
     url: { type: String },
     note: { type: String },
     category: { type: String },

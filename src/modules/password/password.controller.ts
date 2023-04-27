@@ -21,7 +21,7 @@ export class PasswordController {
 
   public async createPassword(req: Request, res: Response, next: NextFunction) {
     try {
-      const password = new Password(req.body);
+      const password = req.body;
       const createdPassword = await this.passwordService.createPassword(password);
       res.status(201).json(createdPassword);
     } catch (error) {
@@ -32,6 +32,7 @@ export class PasswordController {
   public async getPasswordById(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
+      console.log({id})
       const password = await this.passwordService.getPasswordById(id);
       res.status(200).json(password);
     } catch (error) {

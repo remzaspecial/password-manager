@@ -1,12 +1,14 @@
 import Password, { IPassword } from '../../models/password';
+import { PasswordHelper } from '../../utils/password.helper';
+import { ICreatePasswordRequest } from './password.interface';
 
 export class PasswordService {
   public async getPasswords(userId: string): Promise<IPassword[]> {
     return Password.find({ userId }).populate('userId');
   }
 
-  public async createPassword(password: IPassword): Promise<IPassword> {
-    const createdPassword = new Password(password);
+  public async createPassword(password: ICreatePasswordRequest): Promise<IPassword> {
+    const createdPassword = new Password(password)
     return createdPassword.save();
   }
 

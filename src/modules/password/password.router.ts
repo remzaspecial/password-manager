@@ -1,13 +1,13 @@
-import { Router } from 'express';
+import express from 'express';
 import { PasswordController } from './password.controller';
 
-const passwordRouter = Router();
+const passwordRouter = express.Router();
 const passwordController = new PasswordController();
 
-passwordRouter.get('/', passwordController.getPasswords);
-passwordRouter.post('/', passwordController.createPassword);
-passwordRouter.get('/:id', passwordController.getPasswordById);
-passwordRouter.patch('/:id', passwordController.updatePassword);
-passwordRouter.delete('/:id', passwordController.deletePassword);
+passwordRouter.get('/', passwordController.getPasswords.bind(passwordController));
+passwordRouter.post('/', passwordController.createPassword.bind(passwordController));
+passwordRouter.get('/:id', passwordController.getPasswordById.bind(passwordController));
+passwordRouter.patch('/:id', passwordController.updatePassword.bind(passwordController));
+passwordRouter.delete('/:id', passwordController.deletePassword.bind(passwordController));
 
 export default passwordRouter;

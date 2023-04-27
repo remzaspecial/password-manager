@@ -5,6 +5,7 @@ import config from './config/config';
 
 import userRouter from './modules/user/user.router';
 import passwordRouter from './modules/password/password.router';
+import authRouter from './modules/auth/auth.router';
 
 class App {
   public app: Application;
@@ -23,8 +24,9 @@ class App {
   }
 
   private routes() {
-    this.app.use('/api/users', userRouter);
+    this.app.use('/api/auth', authRouter)
     this.app.use('/api/passwords', passwordRouter);
+    this.app.use('/api/users', userRouter);
     this.app.use((req: Request, res: Response, next: NextFunction) => {
       const error = new Error('Not found');
       res.status(404).json({ message: error.message });

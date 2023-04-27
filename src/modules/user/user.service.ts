@@ -1,12 +1,13 @@
 import User, { IUser, ICreateUser } from '../../models/user';
 import { PasswordHelper } from '../../utils/password.helper';
+import { ICreateUserRequest } from './user.interface';
 
 export class UserService {
   public async getUsers(): Promise<IUser[]> {
     return User.find({});
   }
 
-  public async createUser(newUser: ICreateUser): Promise<IUser> {
+  public async createUser(newUser: ICreateUserRequest): Promise<IUser> {
     const { username, password } = newUser;
     const passwordSalt = await PasswordHelper.generatePasswordSalt();
     const passwordHash = await PasswordHelper.generatePasswordHash(password, passwordSalt);
@@ -41,4 +42,18 @@ export class UserService {
       }
     return user;
   }
+
+  public async getUserByUsername(username: string): Promise<IUser> {
+    const user = await User.findOne({ username }).exec();
+    if (!user) {
+      throw new Error('User not found');
+    }
+    return user;
+  }
+
+  public async verifyUserPassword(user: IUser, password: string): Promise<boolean> {
+    const passwordHash = await PasswordHelper.generatePasswordHash(password, user.passwordSalt);
+    return user.passwordHash === passwordHash;
+  }
+  
 }
