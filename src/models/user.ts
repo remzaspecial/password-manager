@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document } from 'mongoose';
 
 export interface ICreateUser {
   username: string;
@@ -17,7 +17,7 @@ const UserSchema: Schema = new Schema(
     passwordHash: { type: String, required: true },
     passwordSalt: { type: String, required: true },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-export default mongoose.model<IUser>("User", UserSchema);
+export default mongoose.model<IUser>('User', UserSchema);

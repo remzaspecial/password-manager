@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from "express";
-import User from "../../models/user";
-import { UserService } from "./user.service";
+import { Request, Response, NextFunction } from 'express';
+import User from '../../models/user';
+import { UserService } from './user.service';
 
 export class UserController {
   private userService: UserService;

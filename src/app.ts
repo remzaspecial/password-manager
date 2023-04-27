@@ -1,11 +1,11 @@
-import express, { Application, Response } from "express";
-import mongoose, { ConnectOptions } from "mongoose";
-import cors from "cors";
-import config from "./config/config";
+import express, { Application, Response } from 'express';
+import mongoose, { ConnectOptions } from 'mongoose';
+import cors from 'cors';
+import config from './config/config';
 
-import userRouter from "./modules/user/user.router";
-import passwordRouter from "./modules/password/password.router";
-import authRouter from "./modules/auth/auth.router";
+import userRouter from './modules/user/user.router';
+import passwordRouter from './modules/password/password.router';
+import authRouter from './modules/auth/auth.router';
 
 class App {
   public app: Application;
@@ -24,11 +24,11 @@ class App {
   }
 
   private routes() {
-    this.app.use("/api/auth", authRouter);
-    this.app.use("/api/passwords", passwordRouter);
-    this.app.use("/api/users", userRouter);
+    this.app.use('/api/auth', authRouter);
+    this.app.use('/api/passwords', passwordRouter);
+    this.app.use('/api/users', userRouter);
     this.app.use((res: Response) => {
-      const error = new Error("Not found");
+      const error = new Error('Not found');
       res.status(404).json({ message: error.message });
     });
   }
@@ -40,7 +40,7 @@ class App {
         useUnifiedTopology: true,
         serverSelectionTimeoutMS: 5000,
       } as ConnectOptions);
-      console.log("Connected to the database");
+      console.log('Connected to the database');
     } catch (error) {
       console.error(error);
     }

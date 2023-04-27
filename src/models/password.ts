@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IPassword extends Document {
   userId: string;
@@ -14,7 +14,7 @@ export interface IPassword extends Document {
 
 const PasswordSchema: Schema = new Schema(
   {
-    userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     name: { type: String, required: true },
     username: { type: String, required: true },
     password: { type: String, required: true },
@@ -24,7 +24,7 @@ const PasswordSchema: Schema = new Schema(
     tags: [{ type: String }],
     comment: { type: String },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-export default mongoose.model<IPassword>("Password", PasswordSchema);
+export default mongoose.model<IPassword>('Password', PasswordSchema);
